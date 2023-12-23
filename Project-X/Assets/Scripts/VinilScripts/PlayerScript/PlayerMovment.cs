@@ -14,18 +14,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform Enemy;
 
     // Dashing Control Variables
-    private bool dashing = true;
-    private float dashingPower = 25f;
-    private float dashingTime = 0.45f;
-    private float dashingCooldown = 2f;
+    [SerializeField] private bool dashing = true;
+    [SerializeField] private float dashingPower = 25f;
+    [SerializeField] private float dashingTime = 0.45f;
+    [SerializeField] private float dashingCooldown = 2f;
+    [SerializeField]private KeyCode dashKey;
 
     // Movement control Variables
     private float SmoothMove = 0.1f; // Smoothness of movement 
-    private float WalkingSpeed = 3.5f;
-    private float RunningSpeed = 7f;
-    private float GravityPower = 10f; // Strength of gravity affecting the player.
-    private float JumpPower = 20f;
-    private float DoubleJumpPower = 25f;
+    [SerializeField] private float WalkingSpeed = 3.5f;
+    [SerializeField] private float RunningSpeed = 7f;
+    [SerializeField] private float GravityPower = 10f; // Strength of gravity affecting the player.
+    [SerializeField] private float JumpPower = 20f;
+    [SerializeField] private float DoubleJumpPower = 25f;
     private int JumpsRemaining = 1;
 
     // Storing Current Velocity Variables.
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 VelocityMomentum;
 
     // Enemy pull stuff
-    private float EnemyPullSpeed = 25f;
+    [SerializeField] private float EnemyPullSpeed = 25f;
     private float PlayerAndEnemyDistanceCheck = 2f;
 
     // References to other components.
@@ -183,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dashing()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && dashing)
+        if (Input.GetKeyDown(dashKey) && dashing)
         {
             // Dash in the direction of the last pressed movement key
             Vector3 dashDirection = Vector3.zero;

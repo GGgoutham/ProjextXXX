@@ -255,8 +255,9 @@ GameObject:
   - component: {fileID: 8496890197896041689}
   - component: {fileID: 8298607826835590531}
   - component: {fileID: 7867215615494522571}
-  - component: {fileID: 2551000941259889645}
-  - component: {fileID: 2261840586947175038}
+  - component: {fileID: 3704604247014740828}
+  - component: {fileID: 8196373905795667580}
+  - component: {fileID: 7279239944282070182}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -380,7 +381,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2551000941259889645
+--- !u!114 &3704604247014740828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,13 +390,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 3679724258606247405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f200f45542c6a254ba06ce8c82f48e4b, type: 3}
+  m_Script: {fileID: 11500000, guid: bc10b20600af3f448a57c478287c04e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!114 &8196373905795667580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679724258606247405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64cc48f29d2719c409d868d2d0e5fde3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   debugHit: {fileID: 0}
   GrappleShotTransForm: {fileID: 2391285497170165266}
   Enemy: {fileID: 0}
---- !u!114 &2261840586947175038
+  dashing: 1
+  dashingPower: 50
+  dashingTime: 0.5
+  dashingCooldown: 1
+  dashKey: 113
+  WalkingSpeed: 8
+  RunningSpeed: 16
+  GravityPower: 9.8
+  JumpPower: 30
+  DoubleJumpPower: 30
+  EnemyPullSpeed: 15
+--- !u!114 &7279239944282070182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -404,7 +429,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3679724258606247405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab95339660a517f4fa754ba1269e4f9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 28cb07fc46cd5d9499185615cb159e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CameraPlayer: {fileID: 1721530993829525978}
