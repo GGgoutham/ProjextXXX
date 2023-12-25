@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -20,6 +21,10 @@ public class GunSO : ScriptableObject
     private MonoBehaviour activeMonoBehaviour;
     private GameObject model;
     private float lastShootTime;
+    private float initialClickTime;
+    private float stopShootTime;
+    private bool lastFrameWantedToShoot;
+    
     private ParticleSystem shootSystem;
     private ObjectPool<TrailRenderer> trailPool;
 
@@ -48,20 +53,28 @@ public class GunSO : ScriptableObject
 
     public void Shoot()
     {
+        if (Time.time - lastShootTime - shootConfig.fireRate > Time.deltaTime)
+        {
+            float lastDuration = Mathf.Clamp(0, (stopShootTime - initialClickTime), shootConfig.maxSpreadTime);
+
+            float lerpTime = (shootConfig.recoilRecoverySpeed - (Time.time - stopShootTime)) / shootConfig.recoilRecoverySpeed;
+
+            initialClickTime = Time.time- Mathf.Lerp(0, lastDuration,Mathf.Clamp01(lerpTime));
+        }
         if (Time.time>shootConfig.fireRate+lastShootTime)
         {
             lastShootTime=Time.time;
             shootSystem.Play();
-            Vector3 shootDir = Camera.main.transform.forward + new Vector3(
-                Random.Range(-shootConfig.spread.x, shootConfig.spread.x),
-                Random.Range(-shootConfig.spread.y, shootConfig.spread.y),
-                Random.Range(-shootConfig.spread.z, shootConfig.spread.z));
 
-            shootDir.Normalize();
+            Vector3 spreadAmmount = shootConfig.GetSpread(Time.time-initialClickTime);
+            model.transform.forward += model.transform.TransformDirection(spreadAmmount);//moves model according to recoil
 
-            if (Physics.Raycast(Camera.main.transform.position,shootDir,out RaycastHit hit,float.MaxValue,shootConfig.hitMask))
+            Vector3 shootDir = model.transform.parent.forward + spreadAmmount ;
+
+
+            if (Physics.Raycast(shootSystem.transform.position,shootDir,out RaycastHit hit,float.MaxValue,shootConfig.hitMask.value))
             {
-                activeMonoBehaviour.StartCoroutine(PlayTrail(model.transform.position,
+                activeMonoBehaviour.StartCoroutine(PlayTrail(shootSystem.transform.position,
                     hit.point,
                     hit));
 
@@ -70,7 +83,7 @@ public class GunSO : ScriptableObject
             }
             else
             {
-                activeMonoBehaviour.StartCoroutine(PlayTrail(Camera.main.transform.position, 
+                activeMonoBehaviour.StartCoroutine(PlayTrail(shootSystem.transform.position, 
                     shootSystem.transform.position + (shootDir*trailConfig.missDistance),
                     new RaycastHit()));
 
@@ -82,6 +95,25 @@ public class GunSO : ScriptableObject
         }
 
     }
+
+    public void Tick(bool wantsToShoot)
+    {
+        model.transform.localRotation = Quaternion.Lerp(
+            model.transform.localRotation,
+            Quaternion.Euler(spawnRotation),
+            Time.deltaTime*shootConfig.recoilRecoverySpeed);
+
+        if (wantsToShoot)
+        {
+            lastFrameWantedToShoot = true;
+            Shoot();
+        }else if (!wantsToShoot && lastFrameWantedToShoot)
+        {
+            stopShootTime = Time.time;
+            lastFrameWantedToShoot = false;
+        }
+
+    } 
 
     private IEnumerator PlayTrail(Vector3 startPoint, Vector3 endPoint,RaycastHit Hit)
     {
@@ -107,7 +139,8 @@ public class GunSO : ScriptableObject
 
         if (Hit.collider!=null)
         {
-            SurfaceManager.Instance.HandleImpact(Hit.transform.gameObject, endPoint, Hit.normal, impactType, 0);
+            
+           // SurfaceManager.Instance.HandleImpact(Hit.transform.gameObject, endPoint, Hit.normal, impactType, 0);  //for later
 
         }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0c9f388f5c76b4f9329e55f2e58d81, type: 3}
   m_Name: Spawn Metal Partical System Effect
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 556609876619741801, guid: aac9bd1ef2aa04c49952080f49bea216, type: 3}
+  Prefab: {fileID: 2443760090917207812, guid: 55d42e4ca74d53444b5d3bd6d8d8afc1, type: 3}
   Probability: 1
   RandomizeRotation: 0
   RandomizedRotationMultiplier: {x: 0, y: 0, z: 0}

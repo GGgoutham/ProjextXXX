@@ -54,7 +54,7 @@ public class EnemyBrain : MonoBehaviour
     {
         if(Time.time>=pathUpdateDeadLine)//checking if we can update the path
         {
-            Debug.Log("updating Path");
+            
             pathUpdateDeadLine = Time.time+enemyRefrences.pathUpdateDelay;//setting next deadline to update the path
             enemyRefrences.navMeshAgent.SetDestination(target.position);//setting new path
 

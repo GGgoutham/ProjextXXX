@@ -10,9 +10,9 @@ public class PlayerAction : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(gunSelector.activeGun!=null)
         {
-            gunSelector.activeGun.Shoot();
+            gunSelector.activeGun.Tick(Input.GetMouseButton(0));
         }
     }
 }
