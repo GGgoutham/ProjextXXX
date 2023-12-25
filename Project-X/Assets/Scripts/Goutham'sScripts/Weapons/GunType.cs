@@ -3,5 +3,5 @@
 public enum GunType 
 {
     
-    Sherif
+    Sherif,shorty
 }
