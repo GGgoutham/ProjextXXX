@@ -20,3 +20,7 @@ MonoBehaviour:
   spawnRotation: {x: 0, y: 0, z: 0}
   shootConfig: {fileID: 11400000, guid: f2b73b3fe8ef1074f9646d02d6f5b6d9, type: 2}
   trailConfig: {fileID: 11400000, guid: 6bdd54f1a4f0c574d8e40ee1f2ad3d2f, type: 2}
+  damageConfig: {fileID: 11400000, guid: 785813642e2e20f43b2c4db20b7e7bef, type: 2}
+  ammoConfig: {fileID: 11400000, guid: 4ecba6f5138df0045aead55ac159c78a, type: 2}
+  audioConfig: {fileID: 11400000, guid: 505d4c3c7e7118c46999bde5cc41c9a6, type: 2}
+  isReloading: 0

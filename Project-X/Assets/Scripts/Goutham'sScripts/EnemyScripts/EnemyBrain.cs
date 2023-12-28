@@ -13,6 +13,11 @@ public class EnemyBrain : MonoBehaviour
 
     private float attackDistance;
     private bool inRange;
+    private bool Dead;
+
+
+    public EnemyHealth health;
+    
 
 
 
@@ -27,20 +32,30 @@ public class EnemyBrain : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         attackDistance = enemyRefrences.navMeshAgent.stoppingDistance;
+        Dead = false;
+
+         
+    }
+
+    private void OnEnable()
+    {
+        Dead = true;
     }
 
     private void Update()
     {
+        if (Dead) return;
          inRange = Vector3.Distance(transform.position,target.transform.position)<=attackDistance;
-
-        if (inRange) 
-        {
-            LookAtTarget();
-        } 
-        else
-        {
-            UpdatePath();
-        }
+        
+            if (inRange)
+            {
+                LookAtTarget();
+            }
+            else
+            {
+                UpdatePath();
+            }
+        
     }
 
     public void LookAtTarget()
@@ -68,6 +83,12 @@ public class EnemyBrain : MonoBehaviour
         {
             enemyRefrences.playerHealth.DamagePlayer(attackDamage);
         }
+    }
+
+
+    private void Die(Vector3 position)
+    {
+        Dead = true;
     }
 
 

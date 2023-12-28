@@ -18,10 +18,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   fireRate: 0.25
+  shootType: 0
   spreadType: 1
   recoilRecoverySpeed: 1
   maxSpreadTime: 1
   bulletWeight: 0.1
-  spread: {x: 0.05, y: 0.05, z: 0.05}
+  spread: {x: 0.1, y: 0.1, z: 0}
   spreadMultiplier: 5
   spreadTexture: {fileID: 2800000, guid: 9cb7bb0b99eccab4794a6de5e6593024, type: 3}
