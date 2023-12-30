@@ -302,17 +302,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void EnemyGrappling()
     {
-        //checks for proper reference
+        //checks for proper ref
         if (Enemy != null)
         {
             if (Enemy.GetComponent<CharacterController>() != null)
             {
-               //checking dir of the player and normalizing it 
+                //checking dir of the player and normalizing it 
                 Vector3 EnemyDir = (transform.position - Enemy.position).normalized;
                 //Moves the enemy to player at the specific speed
                 Enemy.GetComponent<CharacterController>().Move(EnemyDir * EnemyPullSpeed * Time.deltaTime);
 
-               //distance checking between enemy and the player so its stop 
+                //distance checking between enemy and the player so its stop 
                 if (Vector3.Distance(transform.position, Enemy.position) < PlayerAndEnemyDistanceCheck)
                 {
                     state = State.Normal;
@@ -330,4 +330,7 @@ public class PlayerMovement : MonoBehaviour
             state = State.Normal;
         }
     }
+
+
+
 }
