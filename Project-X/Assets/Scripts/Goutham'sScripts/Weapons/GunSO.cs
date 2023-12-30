@@ -32,7 +32,7 @@ public class GunSO : ScriptableObject
     private float stopShootTime;
     private bool lastFrameWantedToShoot;
 
-    public bool isReloading;
+    public bool isReloading=false;
 
 
     private ParticleSystem shootSystem;
@@ -132,6 +132,7 @@ public class GunSO : ScriptableObject
 
     public void Tick(bool wantsToShoot)
     {
+        
         model.transform.localRotation = Quaternion.Lerp(
             model.transform.localRotation,
             Quaternion.Euler(spawnRotation),
@@ -144,6 +145,7 @@ public class GunSO : ScriptableObject
             if (!isReloading)
             {
                 TryToShoot();
+               
             }
         }else if (!wantsToShoot && lastFrameWantedToShoot)
         {
@@ -209,6 +211,10 @@ public class GunSO : ScriptableObject
 
         return origin;
     }
+    public Vector3 GetGunForward()
+    {
+        return model.transform.forward;
+    }
 
 
     private TrailRenderer CreateTrail()
@@ -233,7 +239,7 @@ public class GunSO : ScriptableObject
         return ammoConfig.CanReload();
     }
 
-    public void EndReload()
+    public void End_Reload()
     {
         ammoConfig.Reload();
     }

@@ -23,4 +23,5 @@ MonoBehaviour:
   damageConfig: {fileID: 11400000, guid: 785813642e2e20f43b2c4db20b7e7bef, type: 2}
   ammoConfig: {fileID: 11400000, guid: 4ecba6f5138df0045aead55ac159c78a, type: 2}
   audioConfig: {fileID: 11400000, guid: 505d4c3c7e7118c46999bde5cc41c9a6, type: 2}
+  model: {fileID: 0}
   isReloading: 0

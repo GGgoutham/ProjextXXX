@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingPower = 25f;
     [SerializeField] private float dashingTime = 0.45f;
     [SerializeField] private float dashingCooldown = 2f;
-    [SerializeField]private KeyCode dashKey;
+    [SerializeField] private KeyCode dashKey;
 
     // Movement control Variables
     private float SmoothMove = 0.1f; // Smoothness of movement 
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Enemy pull stuff
     [SerializeField] private float EnemyPullSpeed = 25f;
-    private float PlayerAndEnemyDistanceCheck = 2f;
+    [SerializeField] private float PlayerAndEnemyDistanceCheck = 2f;
 
     // References to other components.
     CharacterController controller;

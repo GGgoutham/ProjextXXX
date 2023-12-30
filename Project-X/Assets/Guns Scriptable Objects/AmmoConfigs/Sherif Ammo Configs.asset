@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAmmo: 120
   ClipSize: 10
-  currentAmmo: 0
+  currentAmmo: 9939
   currentClipAmmo: 10

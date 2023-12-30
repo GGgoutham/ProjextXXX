@@ -9,13 +9,19 @@ public class PlayerGunSelector : MonoBehaviour
     public Camera camera;
 
     [SerializeField] private GunType gun;
-    [SerializeField] private Transform gunParent;
+    [SerializeField] public Transform gunParent;
     [SerializeField] private List<GunSO> guns;
+    [SerializeField] private PlayerIK playerIK;
     //[SerializeField] private PlayerIK inverseKinematics;
 
     [Space]
     [Header("Runtime Filled")]
     public GunSO activeGun;
+    private void Awake()
+    {
+        
+        playerIK = GetComponent<PlayerIK>();
+    }
 
     private void Start()
     {
@@ -26,6 +32,7 @@ public class PlayerGunSelector : MonoBehaviour
     activeGun = gun_;
         gun_.Spawn(gunParent, this,camera);
 
+       // playerIK.Setup(gunParent);
        
     }
 
